@@ -12,6 +12,15 @@ and here
 
 ### Changed
 -->
+## Release 2.3.1
+- Release to match bpmn-server Release 2.3.1
+- added Workflow animation in InstanceDetails page
+- added Show Tokens in InstanceDetails page
+- Modified configuration.ts to support 
+	saveLogs
+	saveSource
+	MongoDB collections names
+
 ## Release 2.2.19
 - Release to match bpmn-server Release 2.2.19
 - Fixed bug #244 

@@ -62,8 +62,9 @@ class AppServices {
     async add({v1,v2},context)
     {
         console.log('add',v1,v2);
-        return v1+v2;
+        return Number.parseInt(v1)+Number.parseInt(v2);
     }
+ 
     IsApprovalDone(context) {
 
         if (context.itemKey==null)

@@ -1,7 +1,5 @@
 
-require('../startup.js');
-import {server,logger} from '../startup.js';
-/*
+
 const { BPMNServer, DefaultAppDelegate, Logger } = require('./');
 const { configuration } = require('./');
 
@@ -9,7 +7,7 @@ const { configuration } = require('./');
 const logger = new Logger({ toConsole: false });
 
 const server = new BPMNServer(configuration, logger);
-*/
+
 //=-=-=-==============================
 
 let name = 'loop';

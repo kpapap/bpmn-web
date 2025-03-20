@@ -140,7 +140,7 @@ export class API extends Common {
                 CacheManager.liveInstances.forEach(exec => {
                     list.push({ instance: exec.instance, currentItem: exec.item.id,currentElement: exec.item.elementId, status: exec.instance.status });
                 });
-                response.json(list);
+                response.json({cache:list,engine: this.bpmnServer.engine.status()});
             }
             catch (exc) {
                 response.json({ error: exc.toString() });
