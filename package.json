@@ -1,6 +1,6 @@
 {
   "name": "bpmn-web",
-  "version": "2.2.20",
+  "version": "2.3.1",
   "homepage": "https://github.com/bpmnServer/bpmn-server/blob/rel2.0.0/docs/README.md",
   "scripts": {
     "setup": "ts-node src/scripts/setup.ts",
@@ -11,12 +11,9 @@
     "test": "ts-node src/test/setup.ts && ts-mocha -exit --config=src/test/.mocharc.json src/test/feature",
     "----": "---------------------for Development Scripts Only -------------------------------------",
     "dev:run": "nodemon -e ts --watch ./ --watch ../server --exec \"tsc --build && tsc --build ../server && cls && node dist/app.js\"",
-    "wf": "nodemon -e ts --watch ./  --exec \"ts-node wf.ts\"",
-    "dev:run2": "nodemon -e ts --watch ./ --watch ../server --exec  && ts-node src/app.ts\"",
     "dev:example": "nodemon -e ts --watch ./ --watch ../server --exec \"tsc --build && tsc --build ../server && node dist/examples/complexApproval.js\"",
     "dev:stress": "node dist/examples/stress.js\"",
-    "dev:test": "nodemon -e ts,js --watch ./ --watch ../server --exec \"tsc --build && tsc --build ../server && ts-mocha -exit --config=src/test/.mocharc.json src/test/feature/error.js || exit 1\"",
-    "dev:test1": "ts-mocha -exit --config=src/test/.mocharc.json src/test/feature/error.js || exit 1\""
+    "dev:test": "nodemon -e ts,js --watch ./ --watch ../server --exec \"tsc --build && tsc --build ../server && ts-mocha -exit --config=src/test/.mocharc.json src/test/feature/error.js || exit 1\""
   },
   "description": "bpmn-web Demo App",
   "author": {
@@ -27,7 +24,7 @@
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "bpmn-moddle": "^8.1.0",
-    "bpmn-server": "file:../server",
+    "bpmn-server": "^2.3.1",
     "camunda-bpmn-moddle": "^4.4.0",
     "chai": "^4.2.0",
     "chalk": "^2.4.2",
