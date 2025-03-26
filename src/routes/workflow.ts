@@ -436,6 +436,7 @@ function setForUser(req) {
 async function display(req,res, title, output, logs = [], items = []) {
 
     let user = getSecureUser(req);
+    
     var instances = await bpmnAPI.data.findInstances({}, user,{sort:{saved:-1}});
     let waiting = await bpmnAPI.data.findItems({ "items.status": 'wait', "items.type": 'bpmn:UserTask' }, getSecureUser(req)); 
 

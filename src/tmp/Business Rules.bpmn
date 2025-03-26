@@ -40,21 +40,21 @@ data.income=64000;</bpmn2:script>
       <bpmndi:BPMNShape id="Participant_0tivc40_di" bpmnElement="Participant_0tivc40" isHorizontal="true">
         <dc:Bounds x="160" y="80" width="600" height="250" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1no7bl9_di" bpmnElement="Flow_1no7bl9">
-        <di:waypoint x="650" y="190" />
-        <di:waypoint x="682" y="190" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1959fhr_di" bpmnElement="Flow_1959fhr">
-        <di:waypoint x="520" y="190" />
-        <di:waypoint x="550" y="190" />
+      <bpmndi:BPMNEdge id="Flow_1jn0zxy_di" bpmnElement="Flow_1jn0zxy">
+        <di:waypoint x="238" y="190" />
+        <di:waypoint x="270" y="190" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1hdpbvm_di" bpmnElement="Flow_1hdpbvm">
         <di:waypoint x="370" y="190" />
         <di:waypoint x="420" y="190" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1jn0zxy_di" bpmnElement="Flow_1jn0zxy">
-        <di:waypoint x="238" y="190" />
-        <di:waypoint x="270" y="190" />
+      <bpmndi:BPMNEdge id="Flow_1959fhr_di" bpmnElement="Flow_1959fhr">
+        <di:waypoint x="520" y="190" />
+        <di:waypoint x="550" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1no7bl9_di" bpmnElement="Flow_1no7bl9">
+        <di:waypoint x="650" y="190" />
+        <di:waypoint x="682" y="190" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="202" y="172" width="36" height="36" />

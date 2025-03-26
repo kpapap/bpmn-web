@@ -113,6 +113,32 @@ export class API2 extends Common {
             }
             response.json({ errors: errors, instances });
         }));
+        router.get('/datastore/find', loggedIn, awaitAppDelegateFactory(async (request, response) => {
+
+            let error, results = null;
+            let {
+                filter = {}, // filter object to match documents.   // e.g. { status: 'running' }
+                projection = { name: 1, status: 1, data: 1, items: { elementId: 1, seq: 1, type: 1, status: 1 } }, // projection object to specify fields to return
+                after,
+                limit = 10,
+                sort = { '_id': -1 } // default sort by _id (descending)'},
+                
+              } = request.body;
+
+              limit=Number.parseInt(limit); // ensure limit is a number
+            
+            try {
+
+                results = await this.bpmnServer.dataStore.find({ filter, projection, after, limit, sort });
+                
+            }
+            catch (exc) {
+                error = exc.toString();
+                console.log(error);
+                response.error=error;
+            }
+            response.json(results);
+        }));
         router.get('/data/fieldInfo', loggedIn, awaitAppDelegateFactory(async (request, response) => {
     
                 let id = request.query.id;

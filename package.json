@@ -11,10 +11,13 @@
     "test": "ts-node src/test/setup.ts && ts-mocha -exit --config=src/test/.mocharc.json src/test/feature",
     "----": "---------------------for Development Scripts Only -------------------------------------",
     "dev:run": "nodemon -e ts --watch ./ --watch ../server --exec \"tsc --build && tsc --build ../server && cls && node dist/app.js\"",
-    "dev:example": "nodemon -e ts --watch ./ --watch ../server --exec \"tsc --build && tsc --build ../server && node dist/examples/complexApproval.js\"",
+    "dev:example": "nodemon -e ts --watch ./ --watch ../server --exec \"tsc --build && tsc --build ../server && node dist/examples/find.js\"",
     "dev:stress": "node dist/examples/stress.js\"",
-    "dev:test": "nodemon -e ts,js --watch ./ --watch ../server --exec \"tsc --build && tsc --build ../server && ts-mocha -exit --config=src/test/.mocharc.json src/test/feature/error.js || exit 1\""
-  },
+    "dev:test": "nodemon -e ts,js --watch ./ --watch ../server --exec \"tsc --build && tsc --build ../server && ts-mocha -exit --config=src/test/.mocharc.json src/test/feature/error.js || exit 1\"",
+    "----": "-----------------Node 23 ---for Development Scripts Only -------------------------------------",
+    "d:kill": "cmd /c kill.cmd",
+    "d:run": "nodemon -e ts --watch ./ --watch ../server --exec  && node --import=tsx src/app.ts\""
+    },
   "description": "bpmn-web Demo App",
   "author": {
     "name": "bpmnServer RalphHanna"
@@ -82,6 +85,7 @@
     "rimraf": "^5.0.5",
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.0.4"
   },
   "engines": {

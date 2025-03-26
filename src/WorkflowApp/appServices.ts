@@ -32,6 +32,17 @@ class AppServices {
         context.item.data['echo']=input;
         return input;
     }
+    
+    async webService(input,context) {
+        const axios = require('axios');
+
+        let url='http://localhost:5000/run';
+        let data={ a: 2, b: 3 };
+
+        let res=await axios.post(url, data) 
+        console.log('Result from Python:', res.data);
+
+    }
     /**
         * Sample Code for Leave Application 
     * to demonstrate how to access DB and return results into scripts
