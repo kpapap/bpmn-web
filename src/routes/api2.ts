@@ -121,15 +121,18 @@ export class API2 extends Common {
                 projection = { name: 1, status: 1, data: 1, items: { elementId: 1, seq: 1, type: 1, status: 1 } }, // projection object to specify fields to return
                 after,
                 limit = 10,
-                sort = { '_id': -1 } // default sort by _id (descending)'},
-                
+                sort = { '_id': -1 } ,// default sort by _id (descending)'},
+                lastItem={},
+                latestItem={},
+                getTotalCount= false
               } = request.body;
 
               limit=Number.parseInt(limit); // ensure limit is a number
             
             try {
 
-                results = await this.bpmnServer.dataStore.find({ filter, projection, after, limit, sort });
+                results = await this.bpmnServer.dataStore.find({ filter, projection, after, limit, sort,lastItem,
+                    latestItem,getTotalCount });
                 
             }
             catch (exc) {
