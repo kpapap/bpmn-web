@@ -88,13 +88,18 @@ function activateTask(taskId,seq) {
             duration: 0.5, 
             onComplete: () => gsap.to(task, { scale: 1, duration: 0.2 }) 
         });
+
    }
 }
 
-function endAnimation(elementId,seq) {
+function endAnimation(elementId,seq,action) {
     let element = document.querySelector(`[data-element-id="${elementId}"]`);
     element.classList.remove("Pending");
-    element.classList.add("Completed");
+    if (action==='Ended')
+        element.classList.add("Completed");
+    else if (action==='Cancelled')
+        element.classList.add("Cancelled")
+    
     if (element) {
         $('#seq_'+seq).show();
         // ✅ Ending Effect: Shrink, Fade Out, or Change Color
@@ -111,8 +116,23 @@ function endAnimation(elementId,seq) {
         });
     }
 }
+let tl = gsap.timeline(); // Start paused
+
 
 gsap.registerPlugin(MotionPathPlugin);
+function pauseAnimation() {
+
+    tl.addPause(() => {
+        console.log("Timeline paused — waiting for user...");
+        document.getElementById("continueBtn").style.display = "block";
+      });
+
+}
+function continueAnimation() {
+    tl.play();
+    document.getElementById("continueBtn").style.display = "none";
+}
+
 
 function startAnimation() {
 
@@ -125,10 +145,10 @@ function startAnimation() {
     for(let i=0;i<flowInfo.length;i++)
         {
             let item=flowInfo[i];
-            $('#seq_'+(item.seq+1)).hide();
+            if (item.seq)
+                $('#seq_'+(item.seq+1)).hide();
         }
 
-    let tl = gsap.timeline({ paused: true }); // Start paused
     
     for(let i=0;i<flowInfo.length;i++)
     {
@@ -144,14 +164,15 @@ function startAnimation() {
         else 
             {
                 if (item.action==='Waiting')
-                    ;
-                else if (item.action==='Ended' || item.action==='Cancelled')
-                    tl.call(() => endAnimation(item.id,item.seq+1), null, "+=0.5"); // Activate task and wait
-                else 
+                {
                     tl.call(() => activateTask(item.id,item.seq+1), null, "+=0.5"); // Activate task and wait
+//                    tl.addPause("waiting");
+}
+                else if (item.action==='Ended' || item.action==='Cancelled')
+                    tl.call(() => endAnimation(item.id,item.seq+1,item.action), null, "+=0.5"); 
             }
     }
-    tl.play();
+   // tl.play();
 
     return;
 }

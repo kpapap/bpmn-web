@@ -1,4 +1,4 @@
-import  { configuration, FindParams }   from './';;
+import  { configuration }   from './';;
 import { BPMNServer, Logger } from './';
 import { EventEmitter } from 'events';
 
@@ -28,71 +28,6 @@ let instanceId;
 const server = new BPMNServer(configuration, logger, { cron: false });
 //find();
 //test();
-findAggregation();
-async function findAggregation() {
-    // benchmark findInstances
-        console.time('find-instances call');
-    let filter={ name: 'Buy Used Car' ,status: 'end' };
-    let insts=await server.dataStore.findInstances(filter, 'summary');
-    let lastIns=insts[insts.length-1];
-    console.log('findInstances:',insts.length,lastIns.startedAt,lastIns.data.caseId);
-
-    console.timeEnd('find-instances call');
-
-    // benchmark find)
-
-    // works perfect
-    let nextCursor = null;
-    let param:FindParams = {
-        getTotalCount: true, // get the total count of records
-        limit: 50, // limit to 10 records per page
-        filter: filter, // filter by process name
-        sort: { _id: 1 },   // sort by _id to get the earliest first
-        projection: { id: 1, data: 1, name: 1, _id:1,startedAt:1,status:1,  // columns to return
-            items: {        
-                $filter: {  // filter items to only include UserTask types    
-                  input: "$items",
-                  as: "item",
-                  cond: {
-                   // $eq: ["$$item.type", "bpmn:UserTask"]
-                   $eq: ["$$item.type", "bpmn:UserTask"] // filter to include only UserTask items
-                  }
-                }
-        }
-    }};
-
-    for(let i=0;i<100;i++) {
-            if (i>0)
-                param.after=nextCursor;
-    
-            console.time('find-aggregation call');
-            let res=await server.dataStore.find(param);
-    
-            if (i===0)
-                console.log('findAggregation    total', res.totalCount,'total pages', Math.ceil(res.totalCount/param.limit));
-
-            param.getTotalCount=false; // do not get the total count again
-            if (res.error) {
-                console.log('error',res.error);
-                return;
-            }
-            else if(!res.data)
-                return;
-            let first=res.data?res.data[0]:null;
-            let last=res.data?res.data[res.data.length-1]:null;
-    
-            nextCursor=res.nextCursor;
-            
-            console.timeEnd('find-aggregation call');
-    
-            console.log('findAggregation    page:',i+1,'length:',res.data.length,res.nextCursor,first.startedAt,first.data.caseId,last.data.caseId);//.data.length, res.data[0] );
-
-            if(res.data.length<param.limit)
-                break;
-
-    }
-}
-
 
 function translateCriteria(query) {
 

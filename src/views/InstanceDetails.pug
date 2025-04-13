@@ -109,9 +109,33 @@ block content
     script(type="application/json" id="jsonInfo") 
       != JSON.stringify(info)
 
-    h4 Model Documentation <button id="showDoc" onclick="showDocs()">&darr;</button>  <button id="showTokens" onclick="$('.decor-token').toggle()">Show Tokens</button>  <button id="startAnimation" onclick="startAnimation()">Show Animation</button> 
+    <button id="showTokens" onclick="$('.decor-token').toggle()">Show Tokens</button>  
+    <button id="startAnimation" onclick="startAnimation()">Show Animation</button> 
+    <!--button id="continueBtn" onclick="continueAnimation()">Continue Animation</button--> 
+    h4 Model Documentation <button id="showDoc" onclick="showDocs()">&darr;</button>  
+    
     div(id="docs" style="display:none; border-width:.5px; border-style: solid; border-color: aliceblue; background: #f7f7f3;") 
       include includes/modelDoc.pug
+
+    h4(style="display:none;") Instance History
+      table#dataTable
+        each inf in (info || [])
+          tr
+            - let o=JSON.parse(inf.message.replaceAll(`'`,`"`))
+            if (o.type==='execution')
+              td(style="white-space:nowrap",colspan="2") Execution
+              td #{o.label}
+              td #{JSON.stringify(o.inputData)}
+              td #{JSON.stringify(o.options)}
+              td #{o.userName}
+              td #{o.id||''+'-'+o.itemId||''}
+
+            else 
+              td 
+              td(style="white-space:nowrap") # #{o.seq+1} #{o.id} 
+              td #{o.action}
+              td 
+            
 
     h4 Instance Items
     span Times shown are from the start of the Execution

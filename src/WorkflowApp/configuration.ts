@@ -40,9 +40,9 @@ var configuration = new Configuration(
 		},
 		dataStore: function (server) {
 			let ds=new DataStore(server);
-			ds.enableSavePoints=true;
-			ds.saveLogs=true;
-			ds.saveSource=true;	// for in-flight changes
+			ds.enableSavePoints=process.env.SAVE_POINTS=='true';
+			ds.saveLogs=process.env.SAVE_LOGS=='true';
+			ds.saveSource=process.env.SAVE_SOURCE=='true';	// for in-flight changes
 			return ds;
 		},
 		scriptHandler: function(server) {
