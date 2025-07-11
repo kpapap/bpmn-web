@@ -1,21 +1,28 @@
-version: "3.7"
 name: bpmn-server
 services:
- bpmn-web:
+  bpmn-web:
     build:
       context: .
       dockerfile: Dockerfile.dev
     command: sh -c "
-        npm run setup &&
-        npm run start"
+      npm run setup &&
+      npm run start"
     ports:
       - 3000:3000
     depends_on:
-      - mongo      
+      - mongo
     env_file:
       - .env
- mongo:
-   image: mongo
-   ports:
-     - 27017:27017
+    volumes:
+      - ./processes:/app/processes
 
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+    driver: local
