@@ -4,9 +4,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    command: sh -c "
-      npm run setup &&
-      npm run start"
+    # command: sh -c "
+    #   npm run setup &&
+    #   npm run start"
     ports:
       - 3000:3000
     depends_on:
