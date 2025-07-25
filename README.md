@@ -1,40 +1,32 @@
-# itsm-workflows-bpmn
-A backend execution engine for the ITSM-NG workflow plugin
+# bpmn-web
+
+A full project for workflow engine, editor
 
 ## Installation
 
 ### Requirements
 
-* Node.js >= 10.x
-* NPM >= 6.x
-* MongoDB >= 4.x
+- Node.js >= 10.x
+- NPM >= 6.x
+- MongoDB >= 4.x
 
 ### Installation
-Setup .env with your mongodb connection string like so:
+
+- Create .env by copying .env.example.
+
+- Clone project
 
 ```bash
-# PORT # for express application
-PORT=3000
+git clone https://github.com/kpapap/bpmn-web.git
 
-#API_KEY is used for remote access
-API_KEY=12345
-
-# MongoDB Settings
-MONGO_DB_URL=mongodb://0.0.0.0:27017/bpmn
-#
-... more settings
-```
-Install dependencies
-```bash
-git clone https://github.com/bpmnServer/bpmn-web.git
-
-npm install
-
-npm run setup
 ```
 
 ## Usage
-Start the server with the following command:
+
+Start the server using docker compose:
+
 ```bash
-npm start
+docker compose up -d --build
 ```
+
+Open http://localhost:3000/
